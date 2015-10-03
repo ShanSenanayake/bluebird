@@ -34,3 +34,5 @@ Reboot to enable
 
 Change line `#HandleLidSwitch=suspend` to `HandleLidSwitch=hibernate`
 
+Reboot or run `sudo restart systemd-logind` to enable
+
