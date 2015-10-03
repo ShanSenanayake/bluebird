@@ -2,11 +2,12 @@
 
 
 ##Set up commands
-
-`sudo apt-get update`
-`sudo apt-get upgrade`
-`sudo apt-get install aptitude`
-`sudo apt-get install build-essential`
+```
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install aptitude
+sudo apt-get install build-essential
+```
 
 ##Fix graphics card bug (causes black screen on startup)
 The big problem is trying to use Intel HD graphics with Nvidia. To fix it select Nvidia binary driver (proprietary, tested) and run the following commands:
@@ -18,7 +19,8 @@ sudo apt-get install nvidia-prime`
 
 ##Fix unknown monitor bug (mouse flickering bug)
 Run command `xrandr`. Example output:
-`Screen 0: minimum 320 x 200, current 1366 x 768, maximum 32767 x 32767
+```
+Screen 0: minimum 320 x 200, current 1366 x 768, maximum 32767 x 32767
 LVDS1 connected primary 1366x768+0+0 (normal left inverted right x axis y axis) 344mm x 194mm
    1366x768       60.0*+   60.1  
    1360x768       59.8     60.0  
@@ -43,7 +45,7 @@ VGA-2 connected (normal left inverted right x axis y axis)
   800x600 (0x45)   36.0MHz
         h: width   800 start  824 end  896 total 1024 skew    0 clock   35.2KHz
         v: height  600 start  601 end  603 total  625           clock   56.2Hz
-`
+```
 
 
 LVDS1 is the build in monitor and should be connected the other VGA displays should be disconnected and causes the mouse flickering bug.
