@@ -65,7 +65,7 @@ editor     = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
 -- user defined
-browser    = "dwb"
+browser    = "chromium-browser"
 browser2   = "iron"
 gui_editor = "gvim"
 graphics   = "gimp"
@@ -467,7 +467,7 @@ globalkeys = awful.util.table.join(
         end),
 
     -- Show Menu
-    awful.key({ modkey }, "w",
+    awful.key({ modkey, "Shift" }, "w",
         function ()
             mymainmenu:show({ keygrabber = true })
         end),
@@ -515,17 +515,17 @@ globalkeys = awful.util.table.join(
    -- awful.key({ altkey,           }, "w",      function () myweather.show(7) end),
 
     -- ALSA volume control
-    awful.key({ altkey }, "Up",
+    awful.key({ }, "#123",
         function ()
             os.execute(string.format("amixer set %s 1%%+", volumewidget.channel))
             volumewidget.update()
         end),
-    awful.key({ altkey }, "Down",
+    awful.key({ }, "#122",
         function ()
             os.execute(string.format("amixer set %s 1%%-", volumewidget.channel))
             volumewidget.update()
         end),
-    awful.key({ altkey }, "m",
+    awful.key({ }, "#121",
         function ()
             os.execute(string.format("amixer set %s toggle", volumewidget.channel))
             volumewidget.update()
@@ -580,7 +580,7 @@ globalkeys = awful.util.table.join(
 
 clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
-    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
+    awful.key({ modkey,    }, "w",      function (c) c:kill()                         end),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
     awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
