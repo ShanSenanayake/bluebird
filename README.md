@@ -8,7 +8,13 @@
 `sudo apt-get install aptitude`
 `sudo apt-get install build-essential`
 
+##Fix graphics card bug (causes black screen on startup)
+The big problem is trying to use Intel HD graphics with Nvidia. To fix it select Nvidia binary driver (proprietary, tested) and run the following commands:
 
+`sudo apt-get purge nvidia*
+sudo apt-get purge bumblebee*
+sudo apt-get -y update
+sudo apt-get install nvidia-prime`
 
 ##Fix unknown monitor bug (mouse flickering bug)
 Run command `xrandr`. Example output:
