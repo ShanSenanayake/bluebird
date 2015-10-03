@@ -74,8 +74,8 @@ Run command `sudo pm-hibernate` to test if hibernation works.
 `gedit com.ubuntu.enable-hibernate.pkla`
 
 Paste in the following:
-
-`[Re-enable hibernate by default in upower]
+```
+[Re-enable hibernate by default in upower]
 Identity=unix-user:*
 Action=org.freedesktop.upower.hibernate
 ResultActive=yes
@@ -83,7 +83,8 @@ ResultActive=yes
 [Re-enable hibernate by default in logind]
 Identity=unix-user:*
 Action=org.freedesktop.login1.hibernate
-ResultActive=yes`
+ResultActive=yes
+```
 
 Reboot to enable
 ##Setup hibernation when closing lid
