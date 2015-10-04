@@ -10,6 +10,9 @@ sudo apt-get install build-essential
 ```
 
 ##Fix graphics card bug (causes black screen on startup)
+To check drivers run the `lspci -v`command.
+
+
 The big problem is trying to use Intel HD graphics with Nvidia. To fix it select Nvidia binary driver (proprietary, tested) and run the following commands:
 ```
 sudo apt-get purge nvidia*
@@ -17,6 +20,8 @@ sudo apt-get purge bumblebee*
 sudo apt-get -y update
 sudo apt-get install nvidia-prime
 ```
+
+If graphics is still bugged at reboot, boot into low-graphics mode and run `sudo apt-get install nvidia-current`
 
 ##Fix unknown monitor bug (mouse flickering bug)
 Run command `xrandr`. Example output:
@@ -65,6 +70,54 @@ by
 Run `sudo update-grub`
 
 and reboot
+
+##Fix screensaver
+Run `xset -q` to check the screen saver settings.
+Example output:
+
+```
+Keyboard Control:
+  auto repeat:  on    key click percent:  0    LED mask:  00000000
+  XKB indicators:
+    00: Caps Lock:   off    01: Num Lock:    off    02: Scroll Lock: off
+    03: Compose:     off    04: Kana:        off    05: Sleep:       off
+    06: Suspend:     off    07: Mute:        off    08: Misc:        off
+    09: Mail:        off    10: Charging:    off    11: Shift Lock:  off
+    12: Group 2:     off    13: Mouse Keys:  off
+  auto repeat delay:  660    repeat rate:  25
+  auto repeating keys:  00ffffffdffffbbf
+                        fadfffefffedffff
+                        9fffffffffffffff
+                        fff7ffffffffffff
+  bell percent:  50    bell pitch:  400    bell duration:  100
+Pointer Control:
+  acceleration:  2/1    threshold:  4
+Screen Saver:
+  prefer blanking:  yes    allow exposures:  yes
+  timeout:  600    cycle:  600
+Colors:
+  default colormap:  0x22    BlackPixel:  0x0    WhitePixel:  0xffffff
+Font Path:
+  /usr/share/fonts/X11/misc,/usr/share/fonts/X11/Type1,built-ins
+DPMS (Energy Star):
+  Standby: 600    Suspend: 600    Off: 600
+  DPMS is Enabled
+  Monitor is On
+```
+To fix run the commands:
+```
+xset s off
+xset s noblank
+```
+If problem still occurs run `sudo vim /etc/X11/xorg.conf` and edit in:
+```
+Option          "BlankTime"     "0"
+Option          "StandbyTime"   "0"
+Option          "SuspendTime"   "0"
+Option          "OffTime"       "0"
+```
+
+Under section `Section "ServerFlags"` if no such section exists create it.
 
 ##Fix hibernation on laptop
 
