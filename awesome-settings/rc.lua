@@ -132,7 +132,7 @@ mytextclock = lain.widgets.abase({
 })
 
 -- Calendar
-lain.widgets.calendar:attach(mytextclock, { font_size = 12 })
+lain.widgets.calendar:attach(mytextclock, { font_size = 20 })
 
 --[[ Weather
 weathericon = wibox.widget.imagebox(beautiful.widget_weather)
@@ -780,7 +780,7 @@ for s = 1, screen.count() do screen[s]:connect_signal("arrange", function ()
 end
 -- }}}
 
--- Run once function
+--[[ Run once function 
 function run_once(cmd)
 	findme = cmd
 	firstspace = cmd:find(" ")
@@ -788,7 +788,7 @@ function run_once(cmd)
 		findme = cmd:sub(0,firstspace-1)
 	end
 	awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd ..")")
-end
+end]]
 
 
 run_once("nm-applet")
