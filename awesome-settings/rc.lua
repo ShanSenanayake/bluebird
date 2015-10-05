@@ -527,7 +527,7 @@ globalkeys = awful.util.table.join(
         end),
     awful.key({ }, "#121",
         function ()
-            os.execute(string.format("amixer set %s toggle", volumewidget.channel))
+            os.execute(string.format("amixer -D pulse set Master Playback Switch toggle", volumewidget.channel))
             volumewidget.update()
         end),
     awful.key({ altkey, "Control" }, "m",
