@@ -145,13 +145,13 @@ myweather = lain.widgets.weather({
     end
 })]]
 
--- / fs
+--[[ / fs
 fsicon = wibox.widget.imagebox(beautiful.widget_fs)
 fswidget = lain.widgets.fs({
     settings  = function()
         widget:set_markup(markup("#80d9d8", fs_now.used .. "% "))
     end
-})
+})]]
 
 --[[ Mail IMAP check
 -- commented because it needs to be set before use
@@ -370,8 +370,8 @@ for s = 1, screen.count() do
     right_layout:add(memwidget)
     right_layout:add(cpuicon)
     right_layout:add(cpuwidget)
-    right_layout:add(fsicon)
-    right_layout:add(fswidget)
+    --right_layout:add(fsicon)
+    --right_layout:add(fswidget)
     --right_layout:add(weathericon)
     --right_layout:add(myweather)
     right_layout:add(tempicon)
@@ -511,7 +511,7 @@ globalkeys = awful.util.table.join(
 
     -- Widgets popups
     awful.key({ altkey,           }, "c",      function () lain.widgets.calendar:show(7) end),
-    awful.key({ altkey,           }, "h",      function () fswidget.show(7) end),
+    --awful.key({ altkey,           }, "h",      function () fswidget.show(7) end),
    -- awful.key({ altkey,           }, "w",      function () myweather.show(7) end),
 
     -- ALSA volume control
