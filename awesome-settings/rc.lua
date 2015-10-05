@@ -198,7 +198,7 @@ batwidget = lain.widgets.bat({
         if bat_now.perc == "N/A" then
             perc = "AC "
         else
-            perc = bat_now.perc .. "% "
+            perc = bat_now.time .. " " ..   bat_now.perc .. "%"
         end
         widget:set_text(perc)
     end
@@ -793,3 +793,39 @@ end]]
 
 run_once("nm-applet")
 run_once("gtk-redshift")
+
+
+-- Disable screensaver when running full screen applications
+local fullscreened_clients = {}
+
+
+local function remove_client(tabl, c)
+    local index = awful.util.table.hasitem(tabl, c)
+    if index then
+        table.remove(tabl, index)
+        if #tabl == 0 then
+            awful.util.spawn("xset s on")
+            awful.util.spawn("xset +dpms")
+        end             
+    end
+end
+
+client.connect_signal("property::fullscreen",
+    function(c)
+        if c.fullscreen then
+            table.insert(fullscreened_clients, c)
+            if #fullscreened_clients == 1 then
+                awful.util.spawn("xset s off")
+                awful.util.spawn("xset -dpms")
+            end
+        else
+            remove_client(fullscreened_clients, c)
+        end
+    end)
+    
+client.connect_signal("unmanage",
+    function(c)
+        if c.fullscreen then
+            remove_client(fullscreened_clients, c)
+        end
+    end)
